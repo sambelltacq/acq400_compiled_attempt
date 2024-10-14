@@ -1,0 +1,26 @@
+# generated on {{ timestamp }}
+
+{% if SSL_MODE == "FORCE" %}
+#SSL_MODE=FORCE
+{% else if SSL_MODE == "ON" %} 
+#SSL_MODE==ON
+{% else %}
+#SSL_MODE==OFF
+{% endif %}
+
+
+{% if WR_ENABLED == "YES" and SSL_MODE != "FORCE" %} 
+#WR_ENABLED=YES AND SSL_MODE NOT FORCE
+{% endif %}
+
+{% if SSL_MODE == "FORCE" or SSL_MODE == "ON" %}
+#SSL_MODE=FORCE|ON
+
+    {% if WEB_AUTH == "ON" %} 
+    #WEB_AUTH=ON
+    {% endif %}
+
+    {% if WR_ENABLED == "YES" %} 
+    #WR_ENABLED=YES
+    {% endif %}
+{% endif %}
